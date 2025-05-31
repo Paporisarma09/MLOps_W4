@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from pandas.plotting import parallel_coordinates
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn import metrics
-
+import joblib 
 def main():
     data = pd.read_csv('data/iris.csv')
     
@@ -25,6 +25,9 @@ def main():
     prediction = mod_dt.predict(X_test)
 
     print("The accuracy of the Decision Tree is {:.3f}".format(metrics.accuracy_score(prediction, y_test)))
+
+    # Save the model
+    joblib.dump(mod_dt, "model.pkl")
 
 if __name__ == "__main__":
     main()
